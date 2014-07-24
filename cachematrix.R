@@ -78,6 +78,12 @@ cacheSolve <- function(the_matrix, ...) {
     # use the get function on the "special" matrix 
     # if the inverse matrix variable is not null Nb. Cached
     # Return a matrix that is the inverse of 'the_matrix'
+
+    #Make sure the argument is a list created by the makeCacheMatrix function
+    if (! "get_inverse_matrix" %in% names(the_matrix)){
+        return(message("Error: This function requires a list created with makeCacheMatrix as the argument."))
+    }
+
     m <- the_matrix$get_inverse_matrix()
     if(!is.null(m)){
         message("getting cached data...")
