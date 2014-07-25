@@ -1,16 +1,20 @@
+################################################################
 #Author:Bill Turczyn
 #Date:2014/07/24 00:30:31
-#Desc: Programming Assignment 2
+#Desc:   Programming Assignment 2
+#Course: R Programming
 
 
 ########################################################################################
-# Descripton: This function creates a  special matrix with functions to support caching 
-#             the inverse of the matrix provided to the set() function 
+# Descripton: This function creates a contains a list with the following functions 
+#             set(), get(), set_inverse(), get_inverse() and a maxtrix with it's inverse 
+#             to support caching 
 #             making use of the `<<-` assignment operator
 #
 # Precondition:
-# Postcondition: 
+# Postcondition: the maxtrix and inverse are created
 ########################################################################################
+
 makeCacheMatrix <- function(my_matrix = matrix()) {
 
     # set the inverse variable to null; used to determine if the results are cached or not
@@ -39,6 +43,7 @@ makeCacheMatrix <- function(my_matrix = matrix()) {
     #Argument:NA 
     #Return: returns the matrix the was initialized with the set function
     #####################################################################
+
     get <- function() {
         my_matrix
     }
@@ -48,6 +53,7 @@ makeCacheMatrix <- function(my_matrix = matrix()) {
     # Return  :
     # Sets inverse_matrix to arguemnt im
     #####################################################################
+
     set_inverse_matrix <- function(im) {
         inverse_matrix <<- im
     }
@@ -56,6 +62,7 @@ makeCacheMatrix <- function(my_matrix = matrix()) {
     # Argument: 
     # Return  :inverse_matrix
     #####################################################################
+
     get_inverse_matrix <- function() {
         inverse_matrix
     }
@@ -94,4 +101,16 @@ cacheSolve <- function(the_matrix, ...) {
     m <- solve(data) %*% data
     the_matrix$set_inverse_matrix(m)
     the_matrix$get_inverse_matrix()
+
 }
+#########################################
+#Below commands test the functions      #
+#########################################
+#message("testing program...")
+#my_matrix<-matrix(c(1,-2,0,0,1,0,0,0,1),3,3)
+#test_me<-makeCacheMatrix()
+#test_me$set(my_matrix)
+##this will produce an error
+#cacheSolve(my_matrix) 
+#cacheSolve(test_me)
+####################################
